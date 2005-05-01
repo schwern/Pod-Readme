@@ -1,0 +1,10 @@
+Build.PL
+Changes
+Makefile.PL
+MANIFEST
+META.yml
+README
+bin/pod2readme
+t/Pod-Readme.t
+lib/Pod/Readme.pm
+SIGNATURE    Added here by Module::Build

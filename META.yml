@@ -1,0 +1,18 @@
+--- #YAML:1.0
+name: Pod-Readme
+version: 0.01
+author:
+  - Robert Rothenberg <rrwo at cpan.org>
+abstract: Convert POD to README file
+license: perl
+requires:
+  Carp: 0
+  Pod::PlainText: 0
+  perl: 5.005
+build_requires:
+  Test::More: 0
+provides:
+  Pod::Readme:
+    file: lib/Pod/Readme.pm
+    version: 0.01
+generated_by: Module::Build version 0.2607

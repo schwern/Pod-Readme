@@ -1,0 +1,32 @@
+This file contains message digests of all files listed in MANIFEST,
+signed via the Module::Signature module, version 0.44.
+
+To verify the content in this distribution, first make sure you have
+Module::Signature installed, then type:
+
+    % cpansign -v
+
+It will check each file's integrity, as well as the signature's
+validity.  If "==> Signature verified OK! <==" is not displayed,
+the distribution may already have been compromised, and you should
+not run its Makefile.PL or Build.PL.
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+SHA1 fccc53888ffa487498555e3fe16c7fc807daebca Build.PL
+SHA1 cfc8dfe44b068f557fef55c66c494bbb58a66db3 Changes
+SHA1 cd654eae13c17faf286c7ce281aeea64b1105339 MANIFEST
+SHA1 49486e13e20fce7d1b6e2c6e8ab537136f6171f5 META.yml
+SHA1 eae0133d89dc4c87ca5f2c24a7811db4a1b944d2 Makefile.PL
+SHA1 fbce01a92d89d2db9b92291038fe4ff4c765be37 README
+SHA1 8aa4675831e586cc5ab6c6f3ed7fe80b1fd8b5a7 bin/pod2readme
+SHA1 4f780e5fa7ec461070bf76c4274ad7675b927144 lib/Pod/Readme.pm
+SHA1 5539dbcaac5eee29568d1e1bde676e38aa66541c t/Pod-Readme.t
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.2.5 (MingW32)
+
+iD8DBQFCdOBIV485gMKcmRARAu7ZAJ9nH+wKCYDIw8rblrD5tlBxVkZc2ACgmTHp
+ikiUzEvQoHkCHIoLQkgR6w0=
+=y1FL
+-----END PGP SIGNATURE-----

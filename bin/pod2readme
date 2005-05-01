@@ -1,0 +1,24 @@
+#!/usr/bin/perl
+
+use strict;
+
+use Pod::Readme;
+
+my $input  = shift;
+
+unless (-r $input) {
+  print STDERR << "USAGE";
+Cannot find input file "$input"
+Usage: pod2readme inputfile [outputfile] [type]
+USAGE
+  exit(1);
+}
+
+my $output = shift || "README";
+
+my $type   = shift || lc($output);
+
+my $parser = Pod::Readme->new( readme_type => $type );
+
+$parser->parse_from_file( $input, $output );
+

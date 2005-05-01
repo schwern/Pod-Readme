@@ -1,0 +1,6 @@
+Revision history for Perl extension Pod::Readme.
+
+0.01  Sat Apr 30 19:22:33 2005
+	- original version; created by h2xs 1.23 with options
+		-X -v 0.01 -b 5.5.0 -n Pod::Readme -P
+
