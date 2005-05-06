@@ -59,7 +59,7 @@ use vars qw( @ISA $VERSION );
 
 @ISA = qw( Pod::PlainText );
 
-$VERSION = '0.01';
+$VERSION = '0.02';
 
 sub initialize {
   my $self = shift;
@@ -199,6 +199,44 @@ sub _include_file {
   return $buffer;
 }
 
+# This code is based on code from Pod::PlainText 2.02
+
+sub seq_l {
+  my $self = shift;
+  local $_ = shift;
+    # Smash whitespace in case we were split across multiple lines.
+    s/\s+/ /g;
+
+    # If we were given any explicit text, just output it.
+    if (/^([^|]+)\|/) { return $1 }
+
+    # Okay, leading and trailing whitespace isn't important; get rid of it.
+    s/^\s+//;
+    s/\s+$//;
+
+    # Default to using the whole content of the link entry as a section
+    # name.  Note that L<manpage/> forces a manpage interpretation, as does
+    # something looking like L<manpage(section)>.  The latter is an
+    # enhancement over the original Pod::Text.
+    my ($manpage, $section) = ('', $_);
+    if (/^(?:https?|ftp|news):/) {
+        # a URL
+        return $_;
+    } elsif (/^"\s*(.*?)\s*"$/) {
+        $section = '"' . $1 . '"';
+    } elsif (m/^[-:.\w]+(?:\(\S+\))?$/) {
+        ($manpage, $section) = ($_, '');
+    } elsif (m%/%) {
+        ($manpage, $section) = split (/\s*\/\s*/, $_, 2);
+    }
+
+    if (length $manpage) {
+      return $manpage;
+    } else {
+      return $section;
+    }
+}
+
 =head1 DESCRIPTION
 
 This module is a subclass of L<Pod::PlainText> which provides additional
@@ -297,6 +335,18 @@ by other POD processors (such as "testing" or "html").
 
 =for readme continue
 
+=begin readme
+
+=head1 REVSION HISTORY
+
+Changes since the last release:
+
+=for readme include file="Changes" start="0.02" stop="0.01" type="text"
+
+A detailed history is available in the F<Changes> file.
+
+=end readme
+
 =head1 SEE ALSO
 
   Pod::Parser
@@ -316,5 +366,7 @@ L<http://rt.cpan.org> to submit bug reports.
 Copyright (c) 2005 Robert Rothenberg. All rights reserved.
 This program is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself.
+
+Some portions are based on L<Pod::PlainText> 2.02.
 
 =cut

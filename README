@@ -37,8 +37,8 @@ SYNOPSIS
       $parser->parse_from_file('Module.pm', 'README');
 
 DESCRIPTION
-    This module is a subclass of the Pod::PlainText manpage which provides
-    additional POD markup for generating README files.
+    This module is a subclass of Pod::PlainText which provides additional
+    POD markup for generating README files.
 
     Why should one bother with this? One can simply use
 
@@ -58,6 +58,15 @@ DESCRIPTION
 
     See the module documentation for more details.
 
+REVSION HISTORY
+    Changes since the last release:
+
+    0.02  Fri May  6 2005
+            - added tests (much needed!)
+            - fixed issue with links being changed to refer to manpages
+
+    A detailed history is available in the Changes file.
+
 SEE ALSO
       Pod::Parser
       Pod::PlainText
@@ -74,4 +83,6 @@ LICENSE
     Copyright (c) 2005 Robert Rothenberg. All rights reserved. This program
     is free software; you can redistribute it and/or modify it under the
     same terms as Perl itself.
+
+    Some portions are based on Pod::PlainText 2.02.
 
