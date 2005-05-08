@@ -59,7 +59,7 @@ use vars qw( @ISA $VERSION );
 
 @ISA = qw( Pod::PlainText );
 
-$VERSION = '0.02';
+$VERSION = '0.03';
 
 sub initialize {
   my $self = shift;
@@ -119,7 +119,8 @@ sub cmd_begin {
   my $self = shift;
   my $sec  = $$self{readme_type} || "readme";
   my @fmt  = $self->_parse_args($_[0]);
-  if ($fmt[0] eq $sec) {
+  my %secs = map { $_ => 1, } split /,/, $fmt[0];
+  if ($secs{$sec}) {
     $$self{README_SKIP} = 0;
     if (($fmt[1]||"pod") eq "pod") {
     }
@@ -140,7 +141,8 @@ sub cmd_for {
   my $self = shift;
   my $sec  = $$self{readme_type} || "readme";
   my @fmt  = $self->_parse_args($_[0]);
-  if ($fmt[0] eq $sec) {
+  my %secs = map { $_ => 1, } split /,/, $fmt[0];
+  if ($secs{$sec}) {
     my $cmd = $fmt[1] || "continue";
     if ($cmd eq "stop") {
       $$self{README_SKIP} = 1;
@@ -183,9 +185,9 @@ sub _include_file {
 
   my $buffer = "";
   while (my $line = <$fh>) {
-    next if (($mark ne "") && ($line !~ /^$mark/));
+    next if (($mark ne "") && ($line !~ /$mark/));
     $mark = "" if ($mark ne "");
-    last if (($stop ne "") && ($line =~ /^$stop/));
+    last if (($stop ne "") && ($line =~ /$stop/));
     $buffer .= $line;
   }
   close $fh;
@@ -302,13 +304,13 @@ a C<continue> command occurs:
 
 =item include
 
-  =for readme include file=filename type=type start=mark stop=mark
+  =for readme include file=filename type=type start=Regexp stop=Regexp
 
-  =for readme include file=Changes start=0.06 stop=0.05 type=text
+  =for readme include file=Changes start=^0.06 stop=^0.05 type=text
 
 Includes a plaintext file named F<filename>, starting with the line
-that begins with the start C<mark> and ending at the line that begins
-with the stop C<mark>.  (The start and stop marks are optional: one
+that contains the start C<Regexp> and ending at the line that begins
+with the stop C<Regexp>.  (The start and stop Regexps are optional: one
 or both may be omitted.)
 
 Type may be C<text> or C<pod>. If omitted, C<pod> will be assumed.
@@ -325,10 +327,14 @@ or F<COPYING>) by using a modified constructor:
   $parser = Pod::Readme->new( readme_type => "copying" );
 
 In the above L</Markup> commands replace "readme" with the tag specified
-instead (such as "copying").
+instead (such as "copying"):
 
-Note that in the current version there is no way to specify a section
-that is handled by multiple file types.  One must duplicate each section.
+  =begin copying
+
+As of version 0.03 you can specify multiple sections by separating them
+with a comma:
+
+  =begin copying,readme
 
 There is also no standard list of type names.  Some names might be recognized
 by other POD processors (such as "testing" or "html").
@@ -341,7 +347,7 @@ by other POD processors (such as "testing" or "html").
 
 Changes since the last release:
 
-=for readme include file="Changes" start="0.02" stop="0.01" type="text"
+=for readme include file="Changes" start="^0.03" stop="^0.02" type="text"
 
 A detailed history is available in the F<Changes> file.
 

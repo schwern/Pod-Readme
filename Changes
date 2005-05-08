@@ -1,5 +1,11 @@
 Revision history for Perl extension Pod::Readme.
 
+0.03  Sun May  8 2005
+	- added documentation to pod2readme script
+	- include file start/stop marks are now Regexps
+	- added more tests
+	- multiple readme types can be specified in a command
+
 0.02  Fri May  6 2005
 	- added tests (much needed!)
 	- fixed issue with links being changed to refer to manpages

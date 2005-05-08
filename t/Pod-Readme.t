@@ -20,40 +20,73 @@ my %L_ARGS = (
   'Text|news://www.cpan.org/' => 'Text',
 );
 
-plan tests => 10 + scalar(keys %L_ARGS);
+my @TYPES = qw( readme copying install hacking todo license );
+
+plan tests => 2 + (19 * scalar(@TYPES)) + scalar(keys %L_ARGS);
 
 use_ok("Pod::Readme");
 
-my $p = Pod::Readme->new();
-ok(defined $p, "new");
 
 # TODO - test other document types than "readme"
 
-{
-  ok($p->{readme_type} eq "readme", "readme_type");
+foreach my $type (@TYPES) {
+  my $p = Pod::Readme->new( readme_type => $type );
+  ok(defined $p, "new");
+
+  ok($p->{readme_type} eq $type, "readme_type");
   ok(!$p->{README_SKIP}, "README_SKIP");
 
   # TODO - test output method
 
-  $p->cmd_for("readme stop");
-  ok($p->{README_SKIP}, "readme stop");
-  $p->cmd_for("readme continue");
-  ok(!$p->{README_SKIP}, "readme continue");
+  $p->cmd_for("$type stop");
+  ok($p->{README_SKIP}, "$type stop");
+  $p->cmd_for("$type continue");
+  ok(!$p->{README_SKIP}, "$type continue");
 
-  $p->cmd_for("readme stop");
-  ok($p->{README_SKIP}, "readme stop");
-  $p->cmd_for("readme");
-  ok(!$p->{README_SKIP}, "readme");
+  $p->cmd_for("$type stop");
+  ok($p->{README_SKIP}, "$type stop");
+  $p->cmd_for("$type");
+  ok(!$p->{README_SKIP}, "$type");
 
-  $p->cmd_for("readme stop");
-  ok($p->{README_SKIP}, "readme stop");
-  $p->cmd_begin("readme");
-  ok(!$p->{README_SKIP}, "begin readme");
+  $p->cmd_for("$type stop");
+  ok($p->{README_SKIP}, "$type stop");
+  $p->cmd_begin("$type");
+  ok(!$p->{README_SKIP}, "begin $type");
+  $p->cmd_end("$type");
+
+  $p->cmd_for("foobar stop");
+  ok(!$p->{README_SKIP}, "foobar stop");
+  $p->cmd_for("foobar continue");
+  ok(!$p->{README_SKIP}, "foobar continue");
+  $p->cmd_for("foobar stop");
+  ok(!$p->{README_SKIP}, "foobar stop");
+  $p->cmd_for("foobar");
+  ok(!$p->{README_SKIP}, "foobar");
+
+  $p->cmd_for("$type,foobar stop");
+  ok($p->{README_SKIP}, "$type,foobar stop");
+  $p->cmd_for("$type,foobar continue");
+  ok(!$p->{README_SKIP}, "$type,foobar continue");
+
+  $p->cmd_for("$type,foobar stop");
+  ok($p->{README_SKIP}, "$type,foobar stop");
+  $p->cmd_for("$type,foobar");
+  ok(!$p->{README_SKIP}, "$type,foobar");
+
+  $p->cmd_for("$type,foobar stop");
+  ok($p->{README_SKIP}, "$type,foobar stop");
+  $p->cmd_begin("$type,foobar");
+  ok(!$p->{README_SKIP}, "begin $type,foobar");
+  $p->cmd_end("$type,foobar");
+
 }
 
 # TODO - test for readme include
 
 {
+  my $p = Pod::Readme->new();
+  ok(defined $p, "new");
+
   foreach my $arg (sort keys %L_ARGS) {
     my $exp = $L_ARGS{$arg} || $arg;
     my $r   = $p->seq_l($arg);
