@@ -59,15 +59,26 @@ use vars qw( @ISA $VERSION );
 
 @ISA = qw( Pod::PlainText );
 
-$VERSION = '0.03';
+$VERSION = '0.04';
 
-sub initialize {
-  my $self = shift;
+{
+  my %INVALID_TYPES = map { $_ => 1, } (qw(
+    testing html xhtml xml docbook rtf man nroff dsr rno latex tex code
+  ));
 
-  $$self{README_SKIP} ||= 0;
-  $$self{readme_type} ||= "readme";
+  sub initialize {
+    my $self = shift;
 
-  $self->SUPER::initialize;
+    $$self{README_SKIP} ||= 0;
+    $$self{readme_type} ||= "readme";
+
+    $$self{debug}       ||= 0;
+
+    $self->SUPER::initialize;
+
+    croak "$$self{readme_type} is an invalid readme_type",
+      if ($INVALID_TYPES{ $$self{readme_type} });
+  }
 }
 
 sub output {
@@ -133,6 +144,8 @@ sub cmd_begin {
     }
   }
   else {
+    carp "Ignoring document type(s) \"$fmt[0]\" in POD line $_[1]"
+      if ($$self{debug});
     $self->SUPER::cmd_begin(@_);
   }
 }
@@ -169,6 +182,8 @@ sub cmd_for {
     }
   }
   else {
+    carp "Ignoring document type(s) \"$fmt[0]\" in POD line $_[1]"
+      if ($$self{debug});
     $self->SUPER::cmd_for(@_);
   }
 }
@@ -258,7 +273,7 @@ installed.
 
 This module allows authors to mark portions of the POD to be included only
 in, or to be excluded from the F<README> file.  It also allows you to
-include portions of the file instead.
+include portions of another file (such as a separate F<ChangeLog>).
 
 =begin readme
 
@@ -269,6 +284,8 @@ See the module documentation for more details.
 =for readme stop
 
 =head2 Markup
+
+Special POD markup options are described below:
 
 =over
 
@@ -292,6 +309,9 @@ you prefer to include plain text instead, add the C<text> modifier:
       This section will only show up in the README file.
 
   =end readme
+
+Note that placing a colon before the section to indicate that it is
+POD (e.g. C<begin :readme>) is not supported in this version.
 
 =item stop/continue
 
@@ -337,7 +357,22 @@ with a comma:
   =begin copying,readme
 
 There is also no standard list of type names.  Some names might be recognized
-by other POD processors (such as "testing" or "html").
+by other POD processors (such as "testing" or "html").  L<Pod::Readme> will
+reject the following "known" type names when they are specified in the
+constructor:
+
+    testing html xhtml xml docbook rtf man nroff dsr rno latex tex code
+
+You can also use a "debug" mode to diagnose any problems, such as mistyped
+format names:
+
+  $parser = Pod::Readme->new( debug => 1 );
+
+Warnings will be issued for any ignored formatting commands.
+
+=head2 Example
+
+For an example, see the F<Readme.pm> file in this distribution.
 
 =for readme continue
 
@@ -347,13 +382,15 @@ by other POD processors (such as "testing" or "html").
 
 Changes since the last release:
 
-=for readme include file="Changes" start="^0.03" stop="^0.02" type="text"
+=for readme include file="Changes" start="^0.04" stop="^0.03" type="text"
 
 A detailed history is available in the F<Changes> file.
 
 =end readme
 
 =head1 SEE ALSO
+
+See L<perlpod> and L<perlpodspec>.
 
   Pod::Parser
   Pod::PlainText

@@ -54,22 +54,24 @@ DESCRIPTION
 
     This module allows authors to mark portions of the POD to be included
     only in, or to be excluded from the README file. It also allows you to
-    include portions of the file instead.
+    include portions of another file (such as a separate ChangeLog).
 
     See the module documentation for more details.
 
 REVSION HISTORY
     Changes since the last release:
 
-    0.03  Sun May  8 2005
-            - added documentation to pod2readme script
-            - include file start/stop marks are now Regexps
-            - added more tests
-            - multiple readme types can be specified in a command
+    0.04  Wed May 18 2005
+            - known other formats such as html are rejected
+            - added missing prereq IO::File in Build.PL
+            - added debug option
+            - typos and tweaks for documentation
 
     A detailed history is available in the Changes file.
 
 SEE ALSO
+    See perlpod and perlpodspec.
+
       Pod::Parser
       Pod::PlainText
 

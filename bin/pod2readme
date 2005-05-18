@@ -4,7 +4,9 @@ use strict;
 
 use Pod::Readme;
 
-my $input  = shift;
+# TODO - use Getopts::Long with better options; allow for stream conversion
+
+my $input  = shift||"";
 
 unless (-r $input) {
   print STDERR << "USAGE";

@@ -21,17 +21,28 @@ my %L_ARGS = (
 );
 
 my @TYPES = qw( readme copying install hacking todo license );
+my @INVALID = qw(
+    testing html xhtml xml docbook rtf man nroff dsr rno latex tex code
+);
 
-plan tests => 2 + (19 * scalar(@TYPES)) + scalar(keys %L_ARGS);
+plan tests => 2 + (19 * scalar(@TYPES)) + scalar(keys %L_ARGS) +
+                  (2 * scalar(@INVALID));
 
 use_ok("Pod::Readme");
 
+foreach my $type (@INVALID) {
+  my $p;
+  $@ = undef;
+  eval { $p = Pod::Readme->new( readme_type => $type ); };
+  ok($@, "new $type failed");
+  ok(!defined $p, "undefined invalid type");
+}
 
 # TODO - test other document types than "readme"
 
 foreach my $type (@TYPES) {
   my $p = Pod::Readme->new( readme_type => $type );
-  ok(defined $p, "new");
+  ok(defined $p, "new $type");
 
   ok($p->{readme_type} eq $type, "readme_type");
   ok(!$p->{README_SKIP}, "README_SKIP");
@@ -93,5 +104,6 @@ foreach my $type (@TYPES) {
     ok($r eq $exp, "L<$arg>");
     # print STDERR "\x23 $r\n";
   };
-  
+
 }
+
