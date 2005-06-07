@@ -7,6 +7,7 @@ my $build = Module::Build->new
      requires => {
        'perl'             => '5.005',
        'Carp'             => 0,
+       'File::Copy'       => 0,       # for pod2readme script
        'IO::File'         => 0,
        'Pod::PlainText'   => 0,
      },

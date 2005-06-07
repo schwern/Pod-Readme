@@ -2,9 +2,15 @@
 
 use strict;
 
+use File::Copy qw( copy );
 use Pod::Readme;
 
-# TODO - use Getopts::Long with better options; allow for stream conversion
+our $VERSION = '0.05';
+
+# TODO
+# - use Getopts::Long with better options
+# - allow for stream conversion
+# - if no input given, parse META.yml and guess
 
 my $input  = shift||"";
 
@@ -21,6 +27,10 @@ my $output = shift || "README";
 my $type   = shift || lc($output);
 
 my $parser = Pod::Readme->new( readme_type => $type );
+
+if (-e $output) {
+  copy( $output, $output . ".bak" );
+}
 
 $parser->parse_from_file( $input, $output );
 
@@ -48,6 +58,10 @@ If need be, this can be overridden in cases where the output file
 is not the same as the type, using a third argument:
 
   pod2readme Module.pm Module-Install.HOWTO install
+
+=head1 SEE ALSO
+
+L<Pod::Readme>
 
 =head1 AUTHOR
 

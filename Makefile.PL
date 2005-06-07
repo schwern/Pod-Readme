@@ -6,6 +6,7 @@ WriteMakefile
           'VERSION_FROM' => 'lib/Pod/Readme.pm',
           'PREREQ_PM' => {
                            'Carp' => '0',
+                           'File::Copy' => '0',
                            'IO::File' => '0',
                            'Pod::PlainText' => '0',
                            'Test::More' => '0'

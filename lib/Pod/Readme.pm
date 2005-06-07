@@ -59,7 +59,7 @@ use vars qw( @ISA $VERSION );
 
 @ISA = qw( Pod::PlainText );
 
-$VERSION = '0.04';
+$VERSION = '0.05';
 
 {
   my %INVALID_TYPES = map { $_ => 1, } (qw(
@@ -263,7 +263,11 @@ Why should one bother with this? One can simply use
 
   pod2text Module.pm > README
 
-The problem with doing that is that the F<README> includes the entirety of
+A problem with doing that is that the default L<pod2text> converter will
+add text to links, so that "LZ<><Module>" is translated to
+"the Module manpage".
+
+Another problem is that the F<README> includes the entirety of
 the module documentation!  Most people browsing the F<README> file do not
 need all of this information.
 
@@ -382,7 +386,7 @@ For an example, see the F<Readme.pm> file in this distribution.
 
 Changes since the last release:
 
-=for readme include file="Changes" start="^0.04" stop="^0.03" type="text"
+=for readme include file="Changes" start="^0.05" stop="^0.04" type="text"
 
 A detailed history is available in the F<Changes> file.
 
