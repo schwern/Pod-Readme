@@ -22,13 +22,19 @@ my %L_ARGS = (
 
 my @TYPES = qw( readme copying install hacking todo license );
 my @INVALID = qw(
-    testing html xhtml xml docbook rtf man nroff dsr rno latex tex code
+  test tests testing
+  html xhtml xml docbook rtf man nroff dsr rno latex tex code
 );
 
-plan tests => 2 + (19 * scalar(@TYPES)) + scalar(keys %L_ARGS) +
-                  (2 * scalar(@INVALID));
+# These are methods supported by Pod::Text but not Pod::PlainText
 
-use_ok("Pod::Readme");
+my @METHODS = qw( cmd_head3 cmd_head4 );
+
+plan tests => 2 + (19 * scalar(@TYPES)) + scalar(keys %L_ARGS) +
+                  (2 * scalar(@INVALID)) + 
+                  (1 * scalar(@METHODS));
+
+use_ok("Pod::Readme", 0.06);
 
 foreach my $type (@INVALID) {
   my $p;
@@ -105,5 +111,12 @@ foreach my $type (@TYPES) {
     # print STDERR "\x23 $r\n";
   };
 
+}
+
+{
+  my $p = Pod::Readme->new();
+  foreach my $method (@METHODS) {
+    ok($p->can($method), "method $method supported");
+  }
 }
 

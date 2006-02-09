@@ -7,9 +7,9 @@ Pod::Readme - Convert POD to README file
 =head1 REQUIREMENTS
 
 This module should run on Perl 5.005 or newer.  The following non-core
-modules are required:
+modules (depending on your Perl version) are required:
 
-  Pod::PlainText
+  Pod::Text
   Test::More
 
 =head1 INSTALLATION
@@ -53,17 +53,31 @@ use strict;
 
 use Carp;
 use IO::File;
-use Pod::PlainText;
+use Pod::Text;
 
 use vars qw( @ISA $VERSION );
 
-@ISA = qw( Pod::PlainText );
+@ISA = qw( Pod::Text );
 
-$VERSION = '0.05';
+$VERSION = '0.06';
+
+
+
+=begin internal
+
+=item initialize
+
+Override adds the C<readme_type> and <debug> options, and initializes
+the "README_SKIP" flag.
+
+=end internal
+
+=cut
 
 {
   my %INVALID_TYPES = map { $_ => 1, } (qw(
-    testing html xhtml xml docbook rtf man nroff dsr rno latex tex code
+    test testing tests
+    html xhtml xml docbook rtf man nroff dsr rno latex tex code
   ));
 
   sub initialize {
@@ -81,11 +95,33 @@ $VERSION = '0.05';
   }
 }
 
+
+=begin internal
+
+=item output
+
+Override does not output anything if the "README_SKIP" flag is enabled.
+
+=end internal
+
+=cut
+
 sub output {
   my $self = shift;
   return if $$self{README_SKIP};
   $self->SUPER::output(@_);
 }
+
+
+=begin internal
+
+=item _parse_args
+
+Parses destination and name="value" arguments passed for L</cmd_for>.
+
+=end internal
+
+=cut
 
 sub _parse_args {
   my $self   = shift;
@@ -126,6 +162,17 @@ sub _parse_args {
 }
 
 
+
+=begin internal
+
+=item cmd_begin
+
+Overrides support for "begin" command.
+
+=end internal
+
+=cut
+
 sub cmd_begin {
   my $self = shift;
   my $sec  = $$self{readme_type} || "readme";
@@ -149,6 +196,17 @@ sub cmd_begin {
     $self->SUPER::cmd_begin(@_);
   }
 }
+
+
+=begin internal
+
+=item cmd_for
+
+Overrides support for "for" command.
+
+=end internal
+
+=cut
 
 sub cmd_for {
   my $self = shift;
@@ -188,6 +246,17 @@ sub cmd_for {
   }
 }
 
+
+=begin internal
+
+=item _include_file
+
+Includes a file.
+
+=end internal
+
+=cut
+
 sub _include_file {
   my $self = shift;
   my $type = shift || "pod";
@@ -209,12 +278,23 @@ sub _include_file {
 
   if ($type ne "pod") {
     my $indent = " " x $$self{MARGIN};
-    $buffer =~ s/([\r\n]+)(\t)?/$1 . $indent x (1+length($2))/ge;
+    $buffer =~ s/([\r\n]+)(\t)?/$1 . $indent x (1+length($2||""))/ge;
     $buffer =~ s/($indent)+$//;
   }
 
   return $buffer;
 }
+
+
+=begin internal
+
+=item seq_l
+
+Overrides support for "L" markup.
+
+=end internal
+
+=cut
 
 # This code is based on code from Pod::PlainText 2.02
 
@@ -253,6 +333,7 @@ sub seq_l {
       return $section;
     }
 }
+
 
 =head1 DESCRIPTION
 
@@ -386,7 +467,7 @@ For an example, see the F<Readme.pm> file in this distribution.
 
 Changes since the last release:
 
-=for readme include file="Changes" start="^0.05" stop="^0.04" type="text"
+=for readme include file="Changes" start="^0.06" stop="^0.05" type="text"
 
 A detailed history is available in the F<Changes> file.
 
@@ -394,10 +475,7 @@ A detailed history is available in the F<Changes> file.
 
 =head1 SEE ALSO
 
-See L<perlpod> and L<perlpodspec>.
-
-  Pod::Parser
-  Pod::PlainText
+See L<perlpod>, L<perlpodspec> and L<podlators>.
 
 =head1 AUTHOR
 
@@ -410,7 +488,7 @@ L<http://rt.cpan.org> to submit bug reports.
 
 =head1 LICENSE
 
-Copyright (c) 2005 Robert Rothenberg. All rights reserved.
+Copyright (c) 2005,2006 Robert Rothenberg. All rights reserved.
 This program is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself.
 

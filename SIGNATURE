@@ -1,5 +1,5 @@
 This file contains message digests of all files listed in MANIFEST,
-signed via the Module::Signature module, version 0.44.
+signed via the Module::Signature module, version 0.50.
 
 To verify the content in this distribution, first make sure you have
 Module::Signature installed, then type:
@@ -14,19 +14,29 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 9b8d63c640825f386976ff2dd1762cfff44cfb80 Build.PL
-SHA1 d2a14105cdd88a1da2486f62bd49739cc6d4812f Changes
-SHA1 cd654eae13c17faf286c7ce281aeea64b1105339 MANIFEST
-SHA1 4ea0ab7db965ef90305e91e0a3b527a987344078 META.yml
-SHA1 a9e717c3020a5cb55a8d72910d7bcfc6752c2b32 Makefile.PL
-SHA1 e62da0e3932414d1e3c5f9ad7c58fb7d7a1420ae README
-SHA1 d961034c58716de87ac6c243541bd5a0383a4c39 bin/pod2readme
-SHA1 1b938750f6c47fea9ce229e7ce1e0dc0364c6f92 lib/Pod/Readme.pm
-SHA1 205c7046ad4e4fc5cb5ab5f1d5c1969e0fa5cc2b t/Pod-Readme.t
+SHA1 458b45a1064793bc230e114091d51a9040d08dea Build.PL
+SHA1 b3704453559dd7e9a0f3feb3643bc5c3341569c7 Changes
+SHA1 b048e2e19088c23bedd8a484d773183175bbf0f4 MANIFEST
+SHA1 21bc0aa7e2a4f642c8d33342f3b1b6b25c700a09 META.yml
+SHA1 0f48c506d198ffabbe2af3c1643d63c5ac2b6b17 Makefile.PL
+SHA1 9040687a88802c278fc44ec1d0cc4953c2d035ef README
+SHA1 841872f9bb96cf1412e670bf9c38db9d646b69d5 bin/pod2readme
+SHA1 93f6d47cab2cc6d954ed15ab78d532c15f74ae74 lib/Pod/Readme.pm
+SHA1 c2d9806392e072ed3b92f18e59d2f44f759da2d9 t/10-basic.t
+SHA1 f591384610ae1be181439b14d071173b8d2d92d2 t/90-fileport.t
+SHA1 0700c3a3665fe431af111ee6c5082e7461a7abfc t/90-pod.t
+SHA1 302ad36855a0750c12650e3c69c09383240c17e5 t/90-podcover.t
 -----BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.2.5 (MingW32)
+Version: GnuPG v1.4.1 (GNU/Linux)
 
-iD8DBQFCpafmV485gMKcmRARAufPAJ9FDZOEUW0HHquwJu2xhBMyr3hK9ACdF0HG
-5PUhMc43isg0OCxFaCBHMmg=
-=U5Ne
+iQGZAwUBQ+t2RsWi0Y+7ctnFAQIr8QwfUYWN3dZ8G3Mv3MaxVz7cKHF9yMw9T9EQ
+G674BG2/wb4mTgz6tI4QaD8gpKXeDA3Shf7AQDiwgDty3gADCBifD3ReYdKA3hj7
+nfrGQMsmWkXZCUDgF2gpHA2tBjjN8UwVdHL9mMqSGSsHms+Sk6C76cl7BiWRwfLL
+4EYQ/NyOoTgBpLU0wdtl0I3cI9VFJRVMR1eN4Kdxb0wsgQIQwW9ybaihNszKw/DL
+ioph9iG/aPw4t6VhSaBnhx7UzdLxGIRBH6wQ7ZeZ2jnUxaXgmigUniA9OsBW3gcS
+SB2sH4WvFDRsEfkOI8stxU4AJV62bS5iwnGnec5DZaDGCdcOuJ9jysiC8d9O0ELe
+f58ALJu23OZ5yD+HPRat9mJS2zTZpFYhQYsihCd0+V3qfALIJrQv308uPebcuCQN
+aQ3WMW2oaZ+6IWplU4+I6hzNFuvRQ8aamOnOFf5iGuUZkiqqbKaljICMk+ErgKq1
+p0Kd81aNh6yWsLzwNMDkdqI7aSCjPNHpY/+QkQ==
+=9VEG
 -----END PGP SIGNATURE-----

@@ -9,9 +9,12 @@ my $build = Module::Build->new
        'Carp'             => 0,
        'File::Copy'       => 0,       # for pod2readme script
        'IO::File'         => 0,
-       'Pod::PlainText'   => 0,
+       'Pod::Text'        => 2.21,    # podlators 1.14
      },
      recommends => {
+       'Test::Pod'                => '1.00', # for DEVEL_TESTS tests
+       'Test::Pod::Coverage'      => 0,
+       'Test::Portability::Files' => 0,      #
      },
      build_requires => {
        'Test::More'     => 0,
@@ -19,7 +22,7 @@ my $build = Module::Build->new
      script_files       => [
        'bin/pod2readme',
      ],
-     create_readme      => 0,
+     create_readme      => ($Module::Build::VERSION >= 0.2702),
      create_makefile_pl => 'traditional',
      dist_author        => 'Robert Rothenberg <rrwo at cpan.org>',
      sign               => 1,

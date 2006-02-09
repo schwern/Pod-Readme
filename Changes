@@ -1,11 +1,19 @@
 Revision history for Perl extension Pod::Readme.
 
+0.06  Thu Feb  9 2006
+	- eliminated a warning about uninitialized values
+	- recognizes =head3 and =head4 headings (from Pod::Text)
+	- uses Pod::Text instead of Pod::PlainText
+	- added internal documentation
+	- added various QA tests
+	- added "test" and "tests" as a rejected format
+
 0.05  Tue Jun  7 2005
 	- pod2readme will backup an existing README file
 	- minor updates to the documentation
 
 0.04  Wed May 18 2005
-	- known other formats such as html are rejected
+	- known other formats such as "html" are rejected
 	- added missing prereq IO::File in Build.PL
 	- added debug option
 	- typos and tweaks for documentation
