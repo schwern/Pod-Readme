@@ -53,15 +53,13 @@ use strict;
 
 use Carp;
 use IO::File;
-use Pod::Text;
+use Pod::Text 2.21;
 
 use vars qw( @ISA $VERSION );
 
 @ISA = qw( Pod::Text );
 
-$VERSION = '0.06';
-
-
+$VERSION = '0.07';
 
 =begin internal
 

@@ -2,19 +2,19 @@
 use ExtUtils::MakeMaker;
 WriteMakefile
 (
-          'PL_FILES' => {},
-          'INSTALLDIRS' => 'site',
           'NAME' => 'Pod::Readme',
+          'VERSION_FROM' => 'lib/Pod/Readme.pm',
+          'PREREQ_PM' => {
+                           'Carp' => '0',
+                           'File::Copy' => '0',
+                           'IO::File' => '0',
+                           'Pod::Text' => '2.21',
+                           'Test::More' => '0'
+                         },
+          'INSTALLDIRS' => 'site',
           'EXE_FILES' => [
                            'bin/pod2readme'
                          ],
-          'VERSION_FROM' => 'lib/Pod/Readme.pm',
-          'PREREQ_PM' => {
-                           'Test::More' => 0,
-                           'File::Copy' => 0,
-                           'IO::File' => 0,
-                           'Pod::Text' => '2.21',
-                           'Carp' => 0
-                         }
+          'PL_FILES' => {}
         )
 ;

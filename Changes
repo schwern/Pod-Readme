@@ -1,5 +1,9 @@
 Revision history for Perl extension Pod::Readme.
 
+0.07  Sat Feb 11 2006
+	- added min version to use Pod::Text statement in source
+	- removed multiple plans from the podcover test
+
 0.06  Thu Feb  9 2006
 	- eliminated a warning about uninitialized values
 	- recognizes =head3 and =head4 headings (from Pod::Text)
