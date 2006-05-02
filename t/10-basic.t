@@ -114,6 +114,7 @@ foreach my $type (@TYPES) {
 }
 
 {
+  local $TODO = "unimplemented methods";
   my $p = Pod::Readme->new();
   foreach my $method (@METHODS) {
     ok($p->can($method), "method $method supported");

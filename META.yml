@@ -1,6 +1,6 @@
 ---
 name: Pod-Readme
-version: 0.07
+version: 0.08
 author:
   - 'Robert Rothenberg <rrwo at cpan.org>'
 abstract: Convert POD to README file
@@ -11,7 +11,7 @@ requires:
   Carp: 0
   File::Copy: 0
   IO::File: 0
-  Pod::Text: 2.21
+  Pod::Text: 3.0
   perl: 5.005
 build_requires:
   Test::More: 0
@@ -22,7 +22,7 @@ recommends:
 provides:
   Pod::Readme:
     file: lib/Pod/Readme.pm
-    version: 0.07
+    version: 0.08
 generated_by: Module::Build version 0.2707
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.2.html

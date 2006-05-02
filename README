@@ -5,7 +5,7 @@ REQUIREMENTS
     This module should run on Perl 5.005 or newer. The following non-core
     modules (depending on your Perl version) are required:
 
-      Pod::Text
+      Pod::PlainText
       Test::More
 
 INSTALLATION
@@ -18,7 +18,7 @@ INSTALLATION
       make test
       make install
 
-    (On Windows platforms you should use "nmake" instead.)
+    (On Windows platforms you should use `nmake' instead.)
 
     Using Build.PL (if you have Module::Build installed):
 
@@ -65,6 +65,14 @@ DESCRIPTION
 REVSION HISTORY
     Changes since the last release:
 
+    0.08  Mon May  1 2006
+            - head3/4 headings not recognized
+            - went back to using Pod::PlainText
+    
+    0.07  Sat Feb 11 2006
+            - added min version to use Pod::Text statement in source
+            - removed multiple plans from the podcover test
+    
     0.06  Thu Feb  9 2006
             - eliminated a warning about uninitialized values
             - recognizes =head3 and =head4 headings (from Pod::Text)
@@ -82,6 +90,7 @@ AUTHOR
     Robert Rothenberg <rrwo at cpan.org>
 
   Suggestions and Bug Reporting
+
     Feedback is always welcome. Please use the CPAN Request Tracker at
     http://rt.cpan.org to submit bug reports.
 

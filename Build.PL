@@ -9,7 +9,7 @@ my $build = Module::Build->new
        'Carp'             => 0,
        'File::Copy'       => 0,       # for pod2readme script
        'IO::File'         => 0,
-       'Pod::Text'        => 2.21,    # podlators 1.14
+       'Pod::Text'        => '3.0',
      },
      recommends => {
        'Test::Pod'                => '1.00', # for DEVEL_TESTS tests

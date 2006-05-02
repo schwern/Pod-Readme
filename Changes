@@ -1,5 +1,9 @@
 Revision history for Perl extension Pod::Readme.
 
+0.08  Mon May  1 2006
+	- head3/4 headings not recognized
+	- went back to using Pod::PlainText
+
 0.07  Sat Feb 11 2006
 	- added min version to use Pod::Text statement in source
 	- removed multiple plans from the podcover test

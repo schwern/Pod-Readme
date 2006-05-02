@@ -9,7 +9,7 @@ Pod::Readme - Convert POD to README file
 This module should run on Perl 5.005 or newer.  The following non-core
 modules (depending on your Perl version) are required:
 
-  Pod::Text
+  Pod::PlainText
   Test::More
 
 =head1 INSTALLATION
@@ -53,13 +53,13 @@ use strict;
 
 use Carp;
 use IO::File;
-use Pod::Text 2.21;
+use Pod::PlainText;
 
 use vars qw( @ISA $VERSION );
 
-@ISA = qw( Pod::Text );
+@ISA = qw( Pod::PlainText );
 
-$VERSION = '0.07';
+$VERSION = '0.08';
 
 =begin internal
 
@@ -409,7 +409,7 @@ a C<continue> command occurs:
 
   =for readme include file=filename type=type start=Regexp stop=Regexp
 
-  =for readme include file=Changes start=^0.06 stop=^0.05 type=text
+  =for readme include file=Changes start=^0.08 stop=^0.06 type=text
 
 Includes a plaintext file named F<filename>, starting with the line
 that contains the start C<Regexp> and ending at the line that begins
@@ -465,7 +465,7 @@ For an example, see the F<Readme.pm> file in this distribution.
 
 Changes since the last release:
 
-=for readme include file="Changes" start="^0.06" stop="^0.05" type="text"
+=for readme include file="Changes" start="^0.08" stop="^0.05" type="text"
 
 A detailed history is available in the F<Changes> file.
 
