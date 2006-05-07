@@ -59,7 +59,7 @@ use vars qw( @ISA $VERSION );
 
 @ISA = qw( Pod::PlainText );
 
-$VERSION = '0.08';
+$VERSION = '0.081';
 
 =begin internal
 

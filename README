@@ -65,6 +65,10 @@ DESCRIPTION
 REVSION HISTORY
     Changes since the last release:
 
+    0.081 Sun May  7 2006
+            - released package without signature, due to Module::Signature
+                  issues
+    
     0.08  Mon May  1 2006
             - head3/4 headings not recognized
             - went back to using Pod::PlainText

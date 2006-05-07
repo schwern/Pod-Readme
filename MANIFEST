@@ -10,4 +10,3 @@ t/90-fileport.t
 t/90-pod.t
 t/90-podcover.t
 lib/Pod/Readme.pm
-SIGNATURE    Added here by Module::Build
