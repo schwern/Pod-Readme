@@ -10,6 +10,7 @@ my $build = Module::Build->new
        'File::Copy'       => 0,       # for pod2readme script
        'IO::File'         => 0,
        'Pod::Text'        => '3.0',
+       'Regexp::Common'   => 0,
      },
      recommends => {
        'Test::Pod'                => '1.00', # for DEVEL_TESTS tests

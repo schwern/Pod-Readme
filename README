@@ -65,25 +65,10 @@ DESCRIPTION
 REVSION HISTORY
     Changes since the last release:
 
-    0.081 Sun May  7 2006
-            - released package without signature, due to Module::Signature
-                  issues
-    
-    0.08  Mon May  1 2006
-            - head3/4 headings not recognized
-            - went back to using Pod::PlainText
-    
-    0.07  Sat Feb 11 2006
-            - added min version to use Pod::Text statement in source
-            - removed multiple plans from the podcover test
-    
-    0.06  Thu Feb  9 2006
-            - eliminated a warning about uninitialized values
-            - recognizes =head3 and =head4 headings (from Pod::Text)
-            - uses Pod::Text instead of Pod::PlainText
-            - added internal documentation
-            - added various QA tests
-            - added "test" and "tests" as a rejected format
+    0.09  Sat Nov 25 2006
+            - uses Regexp::Common for URI parsing for L<> tag
+            - added separate check for https, ftps, and svn URIs
+                  (rt.cpan.org bugs 23585 and 23613)
 
     A detailed history is available in the Changes file.
 

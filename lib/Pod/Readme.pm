@@ -54,12 +54,13 @@ use strict;
 use Carp;
 use IO::File;
 use Pod::PlainText;
+use Regexp::Common qw( URI );
 
 use vars qw( @ISA $VERSION );
 
 @ISA = qw( Pod::PlainText );
 
-$VERSION = '0.081';
+$VERSION = '0.09';
 
 =begin internal
 
@@ -313,8 +314,10 @@ sub seq_l {
     # name.  Note that L<manpage/> forces a manpage interpretation, as does
     # something looking like L<manpage(section)>.  The latter is an
     # enhancement over the original Pod::Text.
+
+
     my ($manpage, $section) = ('', $_);
-    if (/^(?:https?|ftp|news):/) {
+    if (/$RE{URI}/ || /^(?:https?|ftps?|svn):/) {
         # a URL
         return $_;
     } elsif (/^"\s*(.*?)\s*"$/) {
@@ -409,7 +412,7 @@ a C<continue> command occurs:
 
   =for readme include file=filename type=type start=Regexp stop=Regexp
 
-  =for readme include file=Changes start=^0.08 stop=^0.06 type=text
+  =for readme include file=Changes start=^0.09 stop=^0.081 type=text
 
 Includes a plaintext file named F<filename>, starting with the line
 that contains the start C<Regexp> and ending at the line that begins
@@ -465,7 +468,7 @@ For an example, see the F<Readme.pm> file in this distribution.
 
 Changes since the last release:
 
-=for readme include file="Changes" start="^0.08" stop="^0.05" type="text"
+=for readme include file="Changes" start="^0.09" stop="^0.081" type="text"
 
 A detailed history is available in the F<Changes> file.
 

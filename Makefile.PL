@@ -9,6 +9,7 @@ WriteMakefile
                            'File::Copy' => '0',
                            'IO::File' => '0',
                            'Pod::Text' => '3.0',
+                           'Regexp::Common' => '0',
                            'Test::More' => '0'
                          },
           'INSTALLDIRS' => 'site',

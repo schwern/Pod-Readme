@@ -5,9 +5,12 @@ use strict;
 use Test::More;
 
 my %L_ARGS = (
-  'http://www.cpan.org/' => undef,
-  'ftp://www.cpan.org/'  => undef,
-  'news://www.cpan.org/' => undef,
+  'http://www.example.com/' => undef,
+  'https://www.example.com/' => undef,
+  'http://www.example.com/some/page?query=foo&bar=baz' => undef,
+  'ftp://ftp.example.com/some/file'  => undef,
+  # 'news://news.example.com/group.name' => undef,
+  'svn://svn.cpan.org/foo/bar' => undef,
   'Some::Module'         => undef,
   'Some::Module/section' => 'Some::Module',
   'Module'               => undef,

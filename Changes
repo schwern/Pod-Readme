@@ -1,5 +1,10 @@
 Revision history for Perl extension Pod::Readme.
 
+0.09  Sat Nov 25 2006
+	- uses Regexp::Common for URI parsing for L<> tag
+	- added separate check for https, ftps, and svn URIs
+          (rt.cpan.org bugs 23585 and 23613)
+
 0.081 Sun May  7 2006
 	- released package without signature, due to Module::Signature
           issues
